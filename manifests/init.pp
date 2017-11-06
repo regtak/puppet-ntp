@@ -3,13 +3,13 @@ class ntp (
   String $package_ensure       = $ntp::params::package_ensure,
   String $config_name          = $ntp::params::config_name,
   String $cofnig_file_mode     = $ntp::params::config_file_mode,
-  Array[String] $servers       = $ntp::params::servers,
+  $servers                     = $ntp::params::servers,
   String $service_ensure       = $ntp::params::service_ensure,
   String $service_service_name = $ntp::params::service_name,
   Boolean $service_enable      = $ntp::params::service_enable,
   Boolean $service_hasrestart  = $ntp::params::service_hasrestart,
-  Boolean $service_hasrestatus = $ntp::params::service_hasstatus,
-) inherits ::ntp::params {
+  Boolean $service_hasstatus = $ntp::params::service_hasstatus,
+) inherits ntp::params {
   class { '::ntp::install': }
   -> class { '::ntp::config': }
   -> class { '::ntp::service': }
